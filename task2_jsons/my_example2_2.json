@@ -1,0 +1,20 @@
+{
+  "businessPhones": [],
+  "displayName": "Виктор Ушаков",
+  "givenName": null,
+  "jobTitle": null,
+  "mail": null,
+  "mobilePhone": null,
+  "officeLocation": null,
+  "preferredLanguage": null,
+  "surname": null,
+  "userPrincipalName": "viktor@test.onmicrosoft.com",
+  "id": "h98659s5-j563-0845-0j87-8k41r6v713m9",
+  "fake": {
+    "a": 1,
+    "b": 2,
+    "c": {
+      "qwe": "qw3",
+      "ewq": "ewq"
+    }}
+}

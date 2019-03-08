@@ -1,0 +1,71 @@
+{
+    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users",
+    "value": [
+        {
+            "businessPhones": [],
+            "displayName": "Александр Александров",
+            "givenName": null,
+            "jobTitle": null,
+            "mail": null,
+            "mobilePhone": null,
+            "officeLocation": null,
+            "preferredLanguage": null,
+            "surname": null,
+            "userPrincipalName": "alexandrov@test.onmicrosoft.com",
+            "id": "h98659s5-j563-0845-0j87-8k41r6v713m9"
+        },
+        {
+            "businessPhones": [],
+            "displayName": "Григорий Авдеев",
+            "givenName": null,
+            "jobTitle": null,
+            "mail": null,
+            "mobilePhone": null,
+            "officeLocation": null,
+            "preferredLanguage": null,
+            "surname": null,
+            "userPrincipalName": "gregory@test.onmicrosoft.com",
+            "id": "768f53kj-1v73-6v4z-3465-19534ccsz9h3"
+        },
+        {
+            "businessPhones": [],
+            "displayName": "Иванов Иван",
+            "givenName": null,
+            "jobTitle": null,
+            "mail": null,
+            "mobilePhone": null,
+            "officeLocation": null,
+            "preferredLanguage": null,
+            "surname": null,
+            "userPrincipalName": "ivanov@test.onmicrosoft.com",
+            "id": "hg874v2g-j65f-764f-6541-86ckh871bhf9"
+        },
+        {
+            "businessPhones": [],
+            "displayName": "Кирилл Кириллов",
+            "givenName": null,
+            "jobTitle": null,
+            "mail": null,
+            "mobilePhone": null,
+            "officeLocation": null,
+            "preferredLanguage": null,
+            "surname": null,
+            "userPrincipalName": "kirillov@test.onmicrosoft.com",
+            "id": "14c0035e-587a-426c-8f49-d96d5ae7a7fa",
+            "id": "68l8612f-018k-635c-9j32-f81d7fe6g7zd"
+        },
+        {
+            "businessPhones": [],
+            "displayName": "Сергей Сергеев",
+            "givenName": null,
+            "jobTitle": null,
+            "mail": null,
+            "mobilePhone": null,
+            "officeLocation": null,
+            "preferredLanguage": null,
+            "surname": null,
+            "userPrincipalName": "sergeev@test.onmicrosoft.com",
+            "id": "g2341k4j-43li-7613-g8e4-0n84jg87134v"
+        }
+    ]
+}
