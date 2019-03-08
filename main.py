@@ -163,7 +163,6 @@ def task3(first_file, second_file):
         print('Файл успешно создан и отсортирован!')
     except FileNotFoundError as e:
         print(e, 'Не найден файл')
-        return
     except Exception as e:
         print(e, 'Ошибка записи в кусочный файл/полный файл')
     return
