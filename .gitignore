@@ -4,3 +4,5 @@ __pycache__
 .idea
 large_file_911MB.txt
 large_file_151MB.txt
+output.txt
+.gitignore

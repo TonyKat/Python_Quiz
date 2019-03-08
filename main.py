@@ -12,7 +12,6 @@ def func_time(func):
     """
     Декоратор, который сообщает время выполнения.
     """
-
     @wraps(func)
     def wrapper(*args, **kwargs):
         start = time()
@@ -20,16 +19,24 @@ def func_time(func):
         end = time()
         print('Время выполнения "{}": {}\n'.format(func.__name__, end - start))
         return result
-
     return wrapper
+
+
+def is_square(m):
+    return all(len(row) == len(m) for row in m)
 
 
 def task1(array, n):
     try:
         print('n = {}\nОригинальный массив: \n{}'.format(n, array))
-        if n <= 0:
-            raise ValueError('n должно быть положительным ')
+        if n <= 0 or type(n) != int:
+            raise ValueError('n должно быть положительным и целочисленным')
 
+        if type(array[0]) == list or type(array[0]) == np.ndarray:
+            if not is_square(array):
+                raise ValueError('Двумерный список не квадратный!')
+
+        array = np.array(array)
         if array.dtype == int or float:
             if len(array.shape) > 1:
                 if array.shape[0] < n and array.shape[1] < n:
@@ -53,17 +60,13 @@ def task1(array, n):
 def test_task1():
     print('-------------task1_begin-----------------')
     print('-----------Одномерный массив-------------')
-    # одномерный массив
     array = np.arange(11)
     for n in [3, 5, 10, -1, 0]:
         task1(array, n)
 
     print('-----------Двумерный массив---------------')
-    # двумерный массив
     sizes = [3, 5, 11]
-    # создать одномерные массивы
     arrays = [np.arange(x ** 2) for x in sizes]
-    # преобразовать в двумерные массивы
     arrays = [array.reshape(size, size) for array, size in zip(arrays, sizes)]
 
     for array in arrays:
@@ -80,30 +83,34 @@ def test_task2():
                           if mydir.startswith('task2_jsons') and os.path.isdir(mydir)][0]
     path_to_json_files = [os.path.join(path_to_json_files, file) for file in os.listdir(path_to_json_files)
                           if file.endswith('.json')]
-    json_files = []
-    try:
-        for json_file in path_to_json_files:
-            with open(json_file, 'r', encoding='utf-8') as file:
-                json_files.append(json.load(file))
-    except json.JSONDecodeError as e:
-        print(e, 'Ошибка при чтении JSON')
-
-    for i in range(0, len(json_files), 2):
-        difference = task2(json_files[i], json_files[i + 1])
-        if difference:
-            for key, value in difference.items():
-                print('Различия между файлами JSON:')
-                print("'{}': {}\n'{}': {}".format(key, value, key, json_files[i + 1][key]))
-            print()
-        else:
-            print('Нет разницы')
+    for i in range(0, len(path_to_json_files), 2):
+        task2(path_to_json_files[i], path_to_json_files[i + 1])
     print('-------------task2_end-------------------')
     return
 
 
 def task2(first_json, second_json):
-    difference = {key: first_json[key] for key in first_json if key in second_json
-                  and first_json[key] != second_json[key]}
+    json_files = []
+    try:
+        for json_file in [first_json, second_json]:
+            with open(json_file, 'r', encoding='utf-8') as file:
+                json_files.append(json.load(file))
+    except json.JSONDecodeError as e:
+        print(e, 'Ошибка при чтении JSON')
+        return
+    except FileNotFoundError as e:
+        print(e, 'Не найден файл')
+        return
+
+    difference = {key: json_files[0][key] for key in json_files[0] if key in json_files[1]
+                  and json_files[0][key] != json_files[1][key]}
+
+    if difference:
+        for key, value in difference.items():
+            print('Различия между файлами JSON:')
+            print("'{}': {}\n'{}': {}".format(key, value, key, json_files[1][key]))
+    else:
+        print('Нет различий или одинаковых ключей')
     return difference
 
 
@@ -144,19 +151,21 @@ def task3(first_file, second_file):
             files = [stack.enter_context(open(path_to_chunks + '\\' + chunk, encoding='utf-8')) for chunk in
                      chunk_names]
             output_file.writelines(merge(*files))
-    except Exception as e:
-        print(e, 'Ошибка записи в кусочный файл/полный файл')
-    finally:
         for chunk in chunk_names:
             try:
                 os.remove(path_to_chunks + '\\' + chunk)
-            except Exception as e:
+            except OSError as e:
                 print(e, 'Ошибка удаления файлов')
         try:
             os.rmdir(path_to_chunks)
         except OSError as e:
             print(e, 'Ошибка удаления директории!')
         print('Файл успешно создан и отсортирован!')
+    except FileNotFoundError as e:
+        print(e, 'Не найден файл')
+        return
+    except Exception as e:
+        print(e, 'Ошибка записи в кусочный файл/полный файл')
     return
 
 
