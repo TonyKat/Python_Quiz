@@ -160,30 +160,8 @@ def task3(first_file, second_file):
     return
 
 
-def del_lines():
-    file = open('C:\\Users\\anton\\PycharmProjects\\Python_Quiz\\task3_txt\\large_file_911MB.txt', 'r', encoding='utf-8')
-    output_file = open('C:\\Users\\anton\\PycharmProjects\\Python_Quiz\\large_file_911MB_NEW.txt', 'w', encoding='utf-8')
-    length_file = len(file.readlines())
-    file.seek(0)
-    mas_text = []
-    from tqdm import tqdm
-    for i in tqdm(range(0, length_file)):
-        a = file.readline()
-        if a in mas_text:
-            continue
-        else:
-            mas_text.append(a)
-    file.seek(0)
-    file.close()
-    output_file.writelines(mas_text)
-    output_file.close()
-    return mas_text
-
-
 if __name__ == '__main__':
     working_directory = os.getcwd()
-    del_lines()
-    exit()
     test_task1()
     test_task2()
     test_task3()
